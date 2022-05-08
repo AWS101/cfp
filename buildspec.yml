@@ -10,10 +10,10 @@ phases:
       - npm install --silent --no-progress -g serverless@3.16.0
   pre_build:
     commands:
-      - npm install --silent --no-progress
+      - cd cfp-api && npm install --silent --no-progress
   build:
     commands:
-      - serverless deploy |tee "deploy-$(date +%s).log"
+      - cd cfp-api && serverless deploy |tee "deploy-$(date +%s).log"
 
   post_build:
     commands:
