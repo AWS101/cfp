@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+      nodejs: 14
+    commands:
+      - npm install --silent --no-progress -g npm
+      - npm install --silent --no-progress -g serverless@3.16.0
+  pre_build:
+    commands:
+      - cd cfp-api
+      - npm install --silent --no-progress
+  build:
+    commands:
+      - serverless deploy |tee "deploy-$(date +%s).log"
+
+  post_build:
+    commands:
+      - echo "run tests here"
